@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best wishes Princess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <!-- SCENE 1: CINEMATIC LANDING -->
+    <section id="scene1" class="scene active">
+        <div class="floating-hearts"></div>
+        <div class="typewriter-container">
+            <h1 id="typewriter"></h1>
+        </div>
+        <button id="beginBtn" class="glow-button hidden">BEGIN THE JOURNEY</button>
+    </section>
+
+    <!-- SCENE 2: SECRET CODE UNLOCK -->
+    <section id="scene2" class="scene">
+        <div class="glass-card unlock-card">
+            <h2 class="glow-text">Every story has a secret. A small Test :)</h2>
+            <p class="unlock-hint">Enter the nickname that I call you</p>
+            <div class="input-container">
+                <input
+                    type="text"
+                    id="secretInput"
+                    placeholder="TYPE YOUR NICKNAME"
+                    autocomplete="off"
+                />
+                <div id="inputGlow"></div>
+            </div>
+            <button id="unlockBtn" class="glow-button">UNLOCK</button>
+            <p id="errorMsg" class="error-msg hidden">Not quite... try again ❤️</p>
+        </div>
+    </section>
+
+    <!-- SCENE 3: MEMORY GALLERY -->
+    <section id="scene3" class="scene">
+        <div class="gallery-container">
+            <h2 class="section-title glow-text">Our Journey Together</h2>
+
+           <div class="memory-card" data-tilt>
+                <div class="card-image">
+                    <!-- REPLACE WITH YOUR IMAGE -->
+                    <img src="F:\Chinfu GF 18 Bday V1\IMG-20260312-WA0033.jpg" alt="Memory 1">
+                </div>
+                <div class="card-content">
+                    <h3>THE DAY WE MET</h3>
+                    <p><!-- WRITE YOUR STORY HERE -->
+                    This is where our story began. The first photo of a beautiful chapter.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" data-tilt>
+                <div class="card-image">
+                    <!-- REPLACE WITH YOUR IMAGE -->
+                    <img src="F:\Chinfu GF 18 Bday V1\IMG_3429.jpg" alt="Memory 2">
+                </div>
+                <div class="card-content">
+                    <h3>The Moment It Became Love</h3>
+                    <p><!-- WRITE YOUR STORY HERE -->
+                    The moment we realized we were meant for each other.</p>
+                </div>
+            </div>
+
+            <div class="memory-card" data-tilt>
+                <div class="card-image">
+                    <!-- REPLACE WITH YOUR IMAGE -->
+                    <img src="F:\Chinfu GF 18 Bday V1\IMG-20260312-WA0022.jpg" alt="Memory 3">
+                </div>
+                <div class="card-content">
+                    <h3>And now</h3>
+                    <p><!-- WRITE YOUR STORY HERE -->
+                    More memories waiting to be written. Happy Birthday ❤️</p>
+                </div>
+            </div>
+
+            <button id="nextToGame" class="glow-button">CONTINUE THE JOURNEY</button>
+        </div>
+    </section>
+
+    <!-- SCENE 4: HEART GAME -->
+    <section id="scene4" class="scene">
+        <div class="game-container">
+            <h2 class="glow-text">Catch My Heart</h2>
+            <div class="game-score">
+                <span>Hearts Caught: <span id="score">0</span> / 10</span>
+            </div>
+            <div id="gameCanvas">
+                <div id="basket"></div>
+            </div>
+            <p class="game-instructions">
+                Mobile: Swipe left/right | Desktop: Arrow keys
+            </p>
+            <div id="gameComplete" class="hidden">
+                <p class="game-complete-text">"You caught my heart the same way."</p>
+                <button id="finalSceneBtn" class="glow-button">ONE MORE THING...</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCENE 5: FINAL BIRTHDAY MESSAGE -->
+    <section id="scene5" class="scene">
+        <div class="stars-container" id="stars"></div>
+        <div class="final-message-container">
+            <div class="message-fade">
+                <p class="star-text">Among billions of stars...</p>
+            </div>
+            <div class="message-fade">
+                <p class="star-text">You are my favorite one.</p>
+            </div>
+            <div class="birthday-card">
+                <h1 class="birthday-title">HAPPY BIRTHDAY ❤️</h1>
+                <div class="final-photo">
+                    <!-- REPLACE WITH YOUR FINAL IMAGE -->"
+                    <img src="F:\Chinfu GF 18 Bday V1\IMG_3428.jpg" alt="Final Photo">
+                </div>
+                <div class="final-message">
+                    <!-- WRITE YOUR FINAL MESSAGE HERE -->
+                    <p>To the most amazing person in my life,</p>
+                    <p>Every moment with you is a treasure. You light up my world in ways I never thought possible. On your special day, I want you to know how deeply you are loved and cherished.</p>
+                    <p>Here's to another year of making beautiful memories together.</p>
+                    <p>Happy Birthday, my love! ❤️</p>
+                </div>
+            </div>
+        </div>
+        <div id="confetti"></div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

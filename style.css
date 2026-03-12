@@ -1,0 +1,603 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.scene {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.scene.active {
+    display: flex;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* SCENE 1: CINEMATIC LANDING */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 30px;
+    animation: floatHeart 8s infinite;
+    opacity: 0;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.typewriter-container {
+    text-align: center;
+    max-width: 90%;
+}
+
+#typewriter {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: #ff69b4;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.glow-button {
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+.glow-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.glow-button:hover::before {
+    left: 100%;
+}
+
+.glow-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 50px rgba(255, 20, 147, 0.8);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* SCENE 2: SECRET CODE UNLOCK */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 50px 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: glassFloat 3s ease-in-out infinite;
+}
+
+@keyframes glassFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.glow-text {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 600;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4, #ba55d3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.unlock-hint {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#secretInput {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    border-radius: 15px;
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+}
+
+#secretInput:focus {
+    outline: none;
+    border-color: #ff69b4;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+}
+
+#secretInput::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+.error-msg {
+    color: #ff6b9d;
+    margin-top: 15px;
+    font-size: 1rem;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* SCENE 3: MEMORY GALLERY */
+.gallery-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 60px;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 20px;
+    margin-bottom: 40px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideUp 0.8s forwards;
+    cursor: pointer;
+}
+
+.memory-card:nth-child(2) { animation-delay: 0.2s; }
+.memory-card:nth-child(3) { animation-delay: 0.4s; }
+.memory-card:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.memory-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(255, 20, 147, 0.3);
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.memory-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #ff69b4;
+    border: 1px solid #ff69b4;
+    pointer-events: none;
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ff69b4;
+    letter-spacing: 1px;
+}
+
+.card-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+#nextToGame {
+    display: block;
+    margin: 40px auto 0;
+}
+
+/* SCENE 4: HEART GAME */
+.game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.game-score {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #ff69b4;
+    font-weight: 600;
+}
+
+#gameCanvas {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 105, 180, 0.3);
+    border-radius: 20px;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+#basket {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+    transition: left 0.1s linear;
+}
+
+.falling-heart {
+    position: absolute;
+    font-size: 30px;
+    animation: fall linear;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(500px) rotate(360deg);
+    }
+}
+
+.game-instructions {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.game-complete-text {
+    font-size: 1.8rem;
+    margin: 30px 0;
+    color: #ff69b4;
+    font-style: italic;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+/* SCENE 5: FINAL BIRTHDAY MESSAGE */
+.stars-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+.star.bright {
+    width: 4px;
+    height: 4px;
+    background: #ff69b4;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+    animation: brightTwinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes brightTwinkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+.final-message-container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.message-fade {
+    opacity: 0;
+    animation: messageFade 2s forwards;
+}
+
+.message-fade:nth-child(2) {
+    animation-delay: 2s;
+}
+
+@keyframes messageFade {
+    to { opacity: 1; }
+}
+
+.star-text {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 30px 0;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+.birthday-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 40px;
+    margin-top: 50px;
+    opacity: 0;
+    animation: cardAppear 1s forwards 4s;
+}
+
+@keyframes cardAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+    from {
+        transform: scale(0.9);
+    }
+}
+
+.birthday-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+.final-photo {
+    position: relative;
+    width: 99%;
+    max-width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 3px solid rgba(255, 105, 180, 0.5);
+}
+
+.final-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.final-message {
+    font-size: 1.2rem;
+    line-height: 2;
+    margin-top: 30px;
+}
+
+.final-message p {
+    margin-bottom: 15px;
+}
+
+#confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: confettiFall 3s linear;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .glass-card {
+        padding: 40px 25px;
+    }
+
+    .memory-card {
+        padding: 15px;
+    }
+
+    .card-image {
+        height: 250px;
+    }
+
+    .final-photo {
+        height: 300px;
+    }
+
+    .birthday-card {
+        padding: 25px;
+    }
+
+    #gameCanvas {
+        height: 400px;
+    }
+
+    .final-message {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 480px) {
+    .glow-button {
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+
+    .final-photo {
+        height: 250px;
+    }
+}
+
+/* CURSOR TRAIL */
+.heart-trail {
+    position: fixed;
+    pointer-events: none;
+    font-size: 20px;
+    animation: heartTrail 1s forwards;
+    z-index: 9999;
+}
+
+@keyframes heartTrail {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0) translateY(-50px);
+    }
+}
